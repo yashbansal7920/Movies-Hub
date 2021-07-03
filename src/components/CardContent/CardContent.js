@@ -10,11 +10,11 @@ import useStyles from "./styles";
 import { img, unavailable } from "../../config";
 import ContentDetail from "../ContentDetail/ContentDetail";
 
-const Content = ({ content }) => {
+const Content = ({ content, mediaType }) => {
   const classes = useStyles();
 
   return (
-    <ContentDetail type={content.media_type} id={content.id}>
+    <ContentDetail type={mediaType} id={content.id}>
       <Card className={classes.root}>
         <Badge
           className={classes.badge}

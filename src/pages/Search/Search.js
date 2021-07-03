@@ -40,7 +40,6 @@ const Search = () => {
           process.env.REACT_APP_MOVIE_DB_API_KEY
         }&language=en-US&page=${currentPage}&query=${inputTerm}&include_adult=false`
       );
-      console.log(data);
       setCollection(data.results);
       setTotalPages(data.total_pages);
     } catch (error) {
@@ -91,7 +90,7 @@ const Search = () => {
         {collection.length > 0 || inputTerm ? (
           collection.map((c) => (
             <Grid key={c.id} item xs={12} sm={6} md={3}>
-              <Content content={c} />
+              <Content mediaType={type === 0 ? "movie" : "tv"} content={c} />
             </Grid>
           ))
         ) : (

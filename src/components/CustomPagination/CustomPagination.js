@@ -25,8 +25,6 @@ const CustomPagination = ({ totalPages, setCurrentPage }) => {
           className={classes.page}
           onChange={handlePageChange}
           page={page}
-          hideNextButton
-          hidePrevButton
           count={totalPages}
           color="primary"
         />

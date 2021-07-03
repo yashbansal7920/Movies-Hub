@@ -64,7 +64,7 @@ const Series = () => {
         {movies.length > 0 ? (
           movies.map((movie) => (
             <Grid key={movie.id} item xs={12} sm={6} md={3}>
-              <Content content={movie} />
+              <Content mediaType="tv" content={movie} />
             </Grid>
           ))
         ) : (

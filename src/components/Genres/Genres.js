@@ -17,14 +17,13 @@ const Genres = ({
           `https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&language=en-US`
         );
         setGenres(data.genres);
-        console.log(type);
       } catch (error) {
         console.log(error);
       }
     };
     fetchGenres();
 
-    setGenres([]);
+    return () => setGenres([]);
   }, [type]);
 
   const handleAdd = (genre) => {
@@ -42,7 +41,6 @@ const Genres = ({
   return (
     <div style={{ padding: "6px 0" }}>
       {selectedGenres.map((genre) => {
-        console.log(genre);
         return (
           <Chip
             style={{ margin: "2px" }}

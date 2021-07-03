@@ -48,7 +48,7 @@ const Trendings = () => {
         </Grid>
         {trendings.map((trending) => (
           <Grid key={trending.id} item xs={12} sm={6} md={3}>
-            <Content content={trending} />
+            <Content mediaType={trending.media_type} content={trending} />
           </Grid>
         ))}
         <Grid item xs={12}>

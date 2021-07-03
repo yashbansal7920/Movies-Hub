@@ -29,7 +29,6 @@ const Movies = () => {
         );
 
         setIsLoading(false);
-        console.log(data);
         setTotalPages(data.total_pages);
         setMovies(data.results);
       } catch (error) {
@@ -65,7 +64,7 @@ const Movies = () => {
         {movies.length > 0 ? (
           movies.map((movie) => (
             <Grid key={movie.id} item xs={12} sm={6} md={3}>
-              <Content content={movie} />
+              <Content mediaType="movie" content={movie} />
             </Grid>
           ))
         ) : (
