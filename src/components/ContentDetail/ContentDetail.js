@@ -48,7 +48,6 @@ const ContentDetail = ({ type, id, children }) => {
     };
     fetchDetail();
   }, []);
-  console.log(detail);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -121,12 +120,11 @@ const ContentDetail = ({ type, id, children }) => {
                       href={`https://www.youtube.com/watch?v=${video}`}
                       fullWidth
                       size="large"
+                      startIcon={<YouTubeIcon />}
                       variant="contained"
                       color="secondary"
                     >
-                      {video
-                        ? `${(<YouTubeIcon />)} &nbsp; Watch the Trailer`
-                        : "No Trailer available"}
+                      {video ? ` Watch the Trailer` : "No Trailer available"}
                     </Button>
                   </Grid>
                 </Grid>

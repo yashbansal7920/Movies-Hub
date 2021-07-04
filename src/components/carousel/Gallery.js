@@ -28,7 +28,8 @@ const Gallery = ({ cast }) => {
 
   const responsive = {
     0: { items: 3 },
-    512: { items: 5 },
+    512: { items: 4 },
+    1024: { items: 5 },
   };
 
   return (
