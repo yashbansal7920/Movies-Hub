@@ -14,6 +14,7 @@ const CustomPagination = ({ totalPages, setCurrentPage }) => {
 
   const handlePageChange = (e, value) => {
     setCurrentPage(value);
+    window.scroll(0, 0);
   };
 
   return (
