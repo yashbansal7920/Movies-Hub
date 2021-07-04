@@ -39,7 +39,7 @@ const Series = () => {
             gutterBottom
             style={{ color: "#fafafa" }}
           >
-            Discover Movies
+            Discover Tv Series
           </Typography>
         </Grid>
         <Grid item xs={12}>
