@@ -11,7 +11,6 @@ const Gallery = ({ cast }) => {
   const newCast = cast.filter(
     (c, i) => c.known_for_department === "Acting" && i < 10
   );
-  console.log(newCast);
 
   const items = newCast.map((c) => {
     return (

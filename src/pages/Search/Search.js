@@ -29,6 +29,7 @@ const Search = () => {
   const [collection, setCollection] = useState([]);
   const [totalPages, setTotalPages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isClicked, setIsClicked] = useState(false);
 
   const fetchSearch = async () => {
     try {
@@ -42,6 +43,7 @@ const Search = () => {
       );
       setCollection(data.results);
       setTotalPages(data.total_pages);
+      setIsClicked(true);
     } catch (error) {
       console.log(error);
     }
@@ -55,13 +57,18 @@ const Search = () => {
     setCurrentPage(1);
   };
 
+  const handleInputChange = (e) => {
+    setInputTerm(e.target.value);
+    setIsClicked(false);
+  };
+
   return (
     <Container>
       <ThemeProvider theme={darkTheme}>
         <Container style={{ display: "flex" }}>
           <TextField
             defaultValue={inputTerm}
-            onChange={(e) => setInputTerm(e.target.value)}
+            onChange={handleInputChange}
             fullWidth
             label="Search"
             variant="filled"
@@ -87,16 +94,16 @@ const Search = () => {
         </Tabs>
       </ThemeProvider>
       <Grid spacing={2} container>
-        {collection.length > 0 || inputTerm ? (
+        {!collection.length && isClicked ? (
+          <Typography style={{ color: "#fafafa" }} variant="h2" align="center">
+            No Results Found
+          </Typography>
+        ) : (
           collection.map((c) => (
             <Grid key={c.id} item xs={12} sm={6} md={3}>
               <Content mediaType={type === 0 ? "movie" : "tv"} content={c} />
             </Grid>
           ))
-        ) : (
-          <Typography style={{ color: "#fafafa" }} variant="h2" align="center">
-            No Results Found
-          </Typography>
         )}
 
         <Grid item xs={12}>

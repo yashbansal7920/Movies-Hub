@@ -38,13 +38,17 @@ const ContentDetail = ({ type, id, children }) => {
         );
         setDetail(data);
         setCast(data.credits.cast);
-        setVideo(data.videos.results[0].key);
+
+        data.videos.results
+          ? setVideo(data.videos.results[0].key)
+          : setVideo(null);
       } catch (error) {
         console.log(error);
       }
     };
     fetchDetail();
   }, [id, type]);
+  console.log(detail);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -63,8 +67,6 @@ const ContentDetail = ({ type, id, children }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  console.log(detail);
 
   return (
     <>
@@ -122,8 +124,9 @@ const ContentDetail = ({ type, id, children }) => {
                       variant="contained"
                       color="secondary"
                     >
-                      <YouTubeIcon />
-                      &nbsp; Watch the Trailer
+                      {video
+                        ? `${(<YouTubeIcon />)} &nbsp; Watch the Trailer`
+                        : "No Trailer available"}
                     </Button>
                   </Grid>
                 </Grid>
