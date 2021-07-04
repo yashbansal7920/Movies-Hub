@@ -14,6 +14,7 @@ import {
 import { img, unavailable } from "../../config";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import useStyles from "./styles";
+import Gallery from "../carousel/Gallery";
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -110,7 +111,7 @@ const ContentDetail = ({ type, id, children }) => {
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    Casourel
+                    <Gallery cast={cast} />
                   </Grid>
                   <Grid item xs={12}>
                     <Button
