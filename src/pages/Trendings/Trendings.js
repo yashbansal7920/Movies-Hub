@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Grid,
-  Container,
-  CircularProgress,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 import Content from "../../components/CardContent/CardContent";
 import CustomPagination from "../../components/CustomPagination/CustomPagination";
 
 const Trendings = () => {
   const [trendings, setTrendings] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchTrending = async () => {
       try {
-        setIsLoading(true);
-
         const { data } = await axios.get(`
          https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&page=${currentPage}`);
 
-        setIsLoading(false);
         setTrendings(data.results);
       } catch (error) {
         console.log(error);
@@ -31,9 +22,7 @@ const Trendings = () => {
     fetchTrending();
   }, [currentPage]);
 
-  return isLoading ? (
-    <CircularProgress />
-  ) : (
+  return (
     <Container>
       <Grid spacing={2} container>
         <Grid item xs={12}>

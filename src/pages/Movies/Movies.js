@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  CircularProgress,
-  Typography,
-  Grid,
-  Container,
-} from "@material-ui/core";
+import { Typography, Grid, Container } from "@material-ui/core";
 import Genres from "../../components/Genres/Genres";
 import useGenre from "../../hooks/genreHook";
 import Content from "../../components/CardContent/CardContent";
 import CustomPagination from "../../components/CustomPagination/CustomPagination";
 
 const Movies = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -22,13 +16,10 @@ const Movies = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        setIsLoading(true);
-
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}&with_genres=${genreUrl}`
         );
 
-        setIsLoading(false);
         setTotalPages(data.total_pages);
         setMovies(data.results);
       } catch (error) {
@@ -38,9 +29,7 @@ const Movies = () => {
     fetchMovies();
   }, [currentPage, genreUrl]);
 
-  return isLoading ? (
-    <CircularProgress />
-  ) : (
+  return (
     <Container>
       <Grid spacing={2} container>
         <Grid item xs={12}>

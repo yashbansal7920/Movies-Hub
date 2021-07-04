@@ -47,7 +47,7 @@ const ContentDetail = ({ type, id, children }) => {
       }
     };
     fetchDetail();
-  }, [id, type]);
+  }, []);
   console.log(detail);
 
   useEffect(() => {

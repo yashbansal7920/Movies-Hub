@@ -11,11 +11,9 @@ const darkTheme = createMuiTheme({
 
 const CustomPagination = ({ totalPages, setCurrentPage }) => {
   const classes = useStyles();
-  const [page, setPage] = useState(1);
 
   const handlePageChange = (e, value) => {
     setCurrentPage(value);
-    setPage(value);
   };
 
   return (
@@ -24,7 +22,6 @@ const CustomPagination = ({ totalPages, setCurrentPage }) => {
         <Pagination
           className={classes.page}
           onChange={handlePageChange}
-          page={page}
           count={totalPages}
           color="primary"
         />
