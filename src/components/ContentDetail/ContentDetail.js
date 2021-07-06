@@ -23,6 +23,7 @@ const ContentDetail = ({ type, id, children }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [detail, setDetail] = useState({});
+  const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState("");
   const [cast, setCast] = useState([]);
 
@@ -38,16 +39,16 @@ const ContentDetail = ({ type, id, children }) => {
         );
         setDetail(data);
         setCast(data.credits.cast);
-
-        data.videos.results
-          ? setVideo(data.videos.results[0].key)
-          : setVideo(null);
+        setGenres(data.genres);
+        setVideo(data.videos.results[0]?.key);
       } catch (error) {
         console.log(error);
       }
     };
     fetchDetail();
   }, []);
+
+  console.log(detail);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -66,6 +67,9 @@ const ContentDetail = ({ type, id, children }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const genresString = genres.map((g) => g.name).join(" | ");
+  console.log(genresString);
 
   return (
     <>
@@ -105,6 +109,11 @@ const ContentDetail = ({ type, id, children }) => {
                         detail.release_date ||
                         "----"
                       ).substring(0, 4)})`}
+                    </Typography>
+                    <Typography gutterBottom align="center" variant="body1">
+                      {`${genresString} ${
+                        detail.runtime || detail.seasons?.length
+                      } ${detail.runtime ? "min" : "Season"}`}
                     </Typography>
                     <br />
                     <Typography align="center" component="p" variant="body1">
