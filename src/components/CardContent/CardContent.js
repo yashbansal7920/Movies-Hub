@@ -18,7 +18,7 @@ const Content = ({ content, mediaType }) => {
       <Card className={classes.root}>
         <Badge
           className={classes.badge}
-          badgeContent={content.vote_average}
+          badgeContent={Math.round(content.vote_average * 10) / 10}
           color={content.vote_average > 6 ? "primary" : "secondary"}
         />
         <CardMedia
